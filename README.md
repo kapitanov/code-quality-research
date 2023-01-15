@@ -9,17 +9,17 @@ I'm trying to gather some data on code quality of some hand-picked open source p
 
 There is an ongoing debate in the software development community about one specific code quality issue:
 should we use comments in our code or not?
-While some people say that comments are a mispractice and should be avoided by writing self-explanatory code,
+While some people say that comments are a malpractice and should be avoided by writing self-explanatory code,
 others prefer to comment their code nevertheless.
 
 Before taking any sides in this debate, I wanted to gather some data on the topic.
 Especially I wondered how many comments are there in the codebases of popular and well-established open source projects.
 I suppose this might be a good indication on the topic.
 Since these projects are well-known and well-established
-and they exist and are begin developed, improved and maintainted for a signficant time,
+and they exist and are begin developed, improved and maintained for a significant time,
 their development processes and practices are at very least good enough to be considered as a reference.
 
-## Methodics
+## Methodic
 
 I've decided to use a simple metric to measure the code quality:
 _a relative amount of comments in the code (relative to overall amount of code)_.
@@ -67,7 +67,7 @@ However, I've decided to keep it simple for now:
 running `go doc` might fail to a specific codebase,
 therefore some of the selected projects might fail to compute more precise metric.
 
-However, the tool I've written removes license headers from soource files while keeping package-level `godoc`-style comments.
+However, the tool I've written removes license headers from source files while keeping package-level `godoc`-style comments.
 This should improve the accuracy of the metric since a lot of OSS projects include (almost) the same license header
 as a comment into every source file.
 
@@ -147,7 +147,7 @@ Secondly, only two projects have more than 15% of comments:
 
 It's worth mentioning that [Golang sources](https://github.com/golang/go) are very close to that value (13.66%).
 However, it's a very specific project - it's more of a platform than a single application.
-This is why I think it's wise to exlude it from the top.
+This is why I think it's wise to exclude it from the top.
 However I don't feel I should exclude it from the overall research
 since Golang sources are an obviously good reference point if you are looking for an example of idiomatic Go code.
 
@@ -172,7 +172,7 @@ There seems to be no visible correlation between comment rate and file size.
 ## Conclusion
 
 Before saying anything, I should put an extra emphasis on this statement:
-**even best comments would not make an excluse for a bad code**.
+**even best comments would not make an excuse for a bad code**.
 Most certainly I am not trying to encourage anyone to write bad code that is barely readable
 and them make it readable with lots of comments.
 
@@ -181,21 +181,21 @@ with what seems to be publicly accepted level of quality,
 I could recommend you to follow these rules:
 
 - Your code should have at least `5%` of comments.
-  Having less than that is a sign that some compicated parts of your code are not documented well enough.
+  Having less than that is a sign that some complicated parts of your code are not documented well enough.
 
 - Your code should not have more than `20%` of comments.
   Having more that that is a sign that your code is overdocumented
   and it's likely that some of the comments are redundant.
 
 - While first two rules might be a viable guidelines, they are not dogmas.
-  You should make a justified desicion on each case individually.
+  You should make a justified decision on each case individually.
 
 It might be absolutely necessary to have even 50% of comments for some projects,
 while some other ones might need less than 1% of comments.
 However, I believe it would be a great idea to compare your project
 with some well-known open source ones
 to have a point of reference.
-Your decisions must be justified, and not only by your own wismod - but on a wisdom gathered by the whole humanity.
+Your decisions must be justified, and not only by your own wisdom - but on a wisdom gathered by the whole humanity.
 
 ## Research details and process
 
@@ -215,7 +215,7 @@ Before you can run the project, you need to install the following tools:
 See `sources.d/*` files for the list of projects.
 Only Golang projects are supported at the moment.
 
-The following projects were selected to be studyied:
+The following projects were selected to be studied:
 
 - [github.com/docker/compose.git](https://github.com/docker/compose.git)
 - [github.com/nats-io/nats-server.git](https://github.com/nats-io/nats-server.git)
