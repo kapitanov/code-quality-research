@@ -83,6 +83,15 @@ function percentile() {
 	echo "$RESULT"
 }
 
+function split_files() {
+	# Project<tab> Files<tab> TotalLines<tab> CommentLines<tab> CommentRate<lf>
+	# github.com/hashicorp/nomad	0	538551	53821	9.993668
+	cat $ROOTDIR/output/RAW | cut -f2 > $ROOTDIR/output/FILES
+	cat $ROOTDIR/output/RAW | cut -f3 > $ROOTDIR/output/TOTAL_LOC
+	cat $ROOTDIR/output/RAW | cut -f4 > $ROOTDIR/output/COMMENTS_LOC
+	cat $ROOTDIR/output/RAW | cut -f5 > $ROOTDIR/output/COMMENT_PART
+}
+
 function print_report() {
 	echo "# Report"
 	echo ""
@@ -90,17 +99,17 @@ function print_report() {
 	echo ""
 	echo "| Parameter | Value    |"
 	echo "|:----------|---------:|"
-	echo "| Min       | \`$(min_value "$ROOTDIR/output/raw/COMMENT_PART"  | round)%\` |"
-	echo "| Max       | \`$(max_value "$ROOTDIR/output/raw/COMMENT_PART"  | round)%\` |"
-	echo "| Average   | \`$(average "$ROOTDIR/output/raw/COMMENT_PART"  | round)%\` |"
-	echo "| P99:      | \`$(percentile "$ROOTDIR/output/raw/COMMENT_PART" 99 | round)%\` |"
-	echo "| P95:      | \`$(percentile "$ROOTDIR/output/raw/COMMENT_PART" 95 | round)%\` |"
-	echo "| P90:      | \`$(percentile "$ROOTDIR/output/raw/COMMENT_PART" 90 | round)%\` |"
-	echo "| P75:      | \`$(percentile "$ROOTDIR/output/raw/COMMENT_PART" 75 | round)%\` |"
-	echo "| P50:      | \`$(percentile "$ROOTDIR/output/raw/COMMENT_PART" 50 | round)%\` |"
+	echo "| Min       | \`$(min_value "$ROOTDIR/output/COMMENT_PART" | round)%\` |"
+	echo "| Max       | \`$(max_value "$ROOTDIR/output/COMMENT_PART" | round)%\` |"
+	echo "| Average   | \`$(average "$ROOTDIR/output/COMMENT_PART" | round)%\` |"
+	echo "| P99:      | \`$(percentile "$ROOTDIR/output/COMMENT_PART" 99 | round)%\` |"
+	echo "| P95:      | \`$(percentile "$ROOTDIR/output/COMMENT_PART" 95 | round)%\` |"
+	echo "| P90:      | \`$(percentile "$ROOTDIR/output/COMMENT_PART" 90 | round)%\` |"
+	echo "| P75:      | \`$(percentile "$ROOTDIR/output/COMMENT_PART" 75 | round)%\` |"
+	echo "| P50:      | \`$(percentile "$ROOTDIR/output/COMMENT_PART" 50 | round)%\` |"
 	echo ""
-	echo "$(sum "$ROOTDIR/output/raw/FILES") files were analyzed."
-	echo "$(sum "$ROOTDIR/output/raw/TOTAL_LOC") lines of code were scanned."
+	echo "$(sum "$ROOTDIR/output/FILES") files were analyzed."
+	echo "$(sum "$ROOTDIR/output/TOTAL_LOC") lines of code were scanned."
 	echo ""
 	echo "## Sources"
 	echo ""
@@ -110,6 +119,7 @@ function print_report() {
 	echo ""
 }
 
+split_files
 print_report >"$ROOTDIR/output/report.md"
 printf "\e[1;33mREPORT\e[0m $ROOTDIR/output/report.md\n" >&2
 printf "\n\n%s\n" "$(cat $ROOTDIR/output/report.md)" >&2

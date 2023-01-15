@@ -11,26 +11,23 @@ set -e
 source $ROOTDIR/scripts/git.sh
 source $ROOTDIR/scripts/go.sh
 
-[ -d $ROOTDIR/output/raw ] && rm -r $ROOTDIR/output/raw
-mkdir $ROOTDIR/output/raw
+[ -f $ROOTDIR/output/RAW ] && rm $ROOTDIR/output/RAW
+[ -f $ROOTDIR/output/URLS ] && rm $ROOTDIR/output/URLS
+mkdir -p $ROOTDIR/output
 
 [ -f $ROOTDIR/output/table.md ] && rm -r $ROOTDIR/output/table.md
-echo '| Project | Files | Total lines of code | Comments per code |' > $ROOTDIR/output/table.md
-echo '|---|---|---|---|' >> $ROOTDIR/output/table.md
+echo '| Project | Files | Total lines of code | Average LOC per file | Comments per code |' > $ROOTDIR/output/table.md
+echo '|:---|---:|---:|---:|---:|' >> $ROOTDIR/output/table.md
 "
-
-function GO() {
-	URL="$1"
-	# name
-	SCRIPT="$SCRIPT
-go \"$URL\""
-}
 
 # Load configuration using DSL functions and run the scripts
 for file in $(find $ROOTDIR/sources.d/*); do
 	printf "\e[1;33mLOAD\e[0m $file\n" >&2
-	chmod +x $file
-	source $file
+
+	for URL in $(cat $file); do
+		SCRIPT="$SCRIPT
+analyze_go \"$URL\""
+	done
 done
 SCRIPT="$SCRIPT
 

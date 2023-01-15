@@ -22,7 +22,7 @@ their development processes and practices are at very least good enough to be co
 ## Methodics
 
 I've decided to use a simple metric to measure the code quality:
-a relative amount of comments in the code (relative to overall amount of code).
+_a relative amount of comments in the code (relative to overall amount of code)_.
 
 In order to calculate this metric, I've written a small tool that scans the codebase of a project,
 runs the `gocloc` tool on it and then calculates the metric.
@@ -67,34 +67,38 @@ However, I've decided to keep it simple for now:
 running `go doc` might fail to a specific codebase,
 therefore some of the selected projects might fail to compute more precise metric.
 
+However, the tool I've written removes license headers from soource files while keeping package-level `godoc`-style comments.
+This should improve the accuracy of the metric since a lot of OSS projects include (almost) the same license header
+as a comment into every source file.
+
 Still, I see this as a point of possible improvement for the future.
 
 ## Raw data
 
-| Project                                                  | Files | Total lines of code | Comments per code |
-| -------------------------------------------------------- | ----- | ------------------- | ----------------- |
-| [`compose`](https://github.com/docker/compose)           | 149   | 16641               | 17.50%            |
-| [`nats-server`](https://github.com/nats-io/nats-server)  | 171   | 188662              | 12.47%            |
-| [`containerd`](https://github.com/containerd/containerd) | 1207  | 180764              | 17.75%            |
-| [`buildkit`](https://github.com/moby/buildkit)           | 654   | 141854              | 9.34%             |
-| [`rclone`](https://github.com/rclone/rclone)             | 840   | 205834              | 13.92%            |
-| [`gogs`](https://github.com/gogs/gogs)                   | 288   | 45470               | 14.67%            |
-| [`kubernetes`](https://github.com/kubernetes/kubernetes) | 9840  | 2067476             | 18.32%            |
-| [`helm`](https://github.com/helm/helm)                   | 354   | 39618               | 27.94%            |
-| [`go`](https://github.com/golang/go)                     | 8208  | 1455506             | 19.95%            |
-| [`grafana`](https://github.com/grafana/grafana)          | 2403  | 384977              | 7.17%             |
-| [`loki`](https://github.com/grafana/loki)                | 1287  | 285302              | 6.29%             |
-| [`prometheus`](https://github.com/prometheus/prometheus) | 437   | 145205              | 13.75%            |
-| [`moby`](https://github.com/moby/moby)                   | 1910  | 245014              | 12.41%            |
-| [`bbolt`](https://github.com/etcd-io/bbolt)              | 55    | 11668               | 17.24%            |
-| [`etcd`](https://github.com/etcd-io/etcd)                | 1000  | 173739              | 13.98%            |
-| [`terraform`](https://github.com/hashicorp/terraform)    | 1222  | 277849              | 13.68%            |
-| [`hugo`](https://github.com/gohugoio/hugo)               | 753   | 115067              | 20.59%            |
-| [`consul`](https://github.com/hashicorp/consul)          | 1621  | 428243              | 11.00%            |
-| [`vault`](https://github.com/hashicorp/vault)            | 1494  | 351541              | 17.02%            |
-| [`nomad`](https://github.com/hashicorp/nomad)            | 1642  | 408570              | 13.26%            |
+| Project                                                  |   Files | Total lines of code | Average LOC per file | Comments per code |
+| :------------------------------------------------------- | ------: | ------------------: | -------------------: | ----------------: |
+| [`compose`](https://github.com/docker/compose)           |   `149` |             `20405` |             `136.95` |           `5.68%` |
+| [`nats-server`](https://github.com/nats-io/nats-server)  |   `171` |            `238214` |            `1393.06` |           `9.00%` |
+| [`containerd`](https://github.com/containerd/containerd) |  `4240` |           `1205662` |             `284.35` |          `12.45%` |
+| [`buildkit`](https://github.com/moby/buildkit)           |  `4149` |           `1123429` |             `270.77` |          `14.02%` |
+| [`rclone`](https://github.com/rclone/rclone)             |   `840` |            `256150` |             `304.94` |          `10.93%` |
+| [`gogs`](https://github.com/gogs/gogs)                   |   `288` |             `59431` |             `206.36` |           `9.78%` |
+| [`kubernetes`](https://github.com/kubernetes/kubernetes) | `15372` |           `5260298` |             `342.20` |          `16.96%` |
+| [`helm`](https://github.com/helm/helm)                   |   `354` |             `53355` |             `150.72` |          `12.81%` |
+| [`go`](https://github.com/golang/go)                     |  `8862` |           `2256526` |             `254.63` |          `13.66%` |
+| [`grafana`](https://github.com/grafana/grafana)          |  `2403` |            `469946` |             `195.57` |           `5.71%` |
+| [`loki`](https://github.com/grafana/loki)                |  `9058` |           `3434609` |             `379.18` |          `16.99%` |
+| [`prometheus`](https://github.com/prometheus/prometheus) |   `438` |            `178231` |             `406.92` |           `8.17%` |
+| [`moby`](https://github.com/moby/moby)                   |  `6193` |           `1564054` |             `252.55` |          `11.93%` |
+| [`bbolt`](https://github.com/etcd-io/bbolt)              |    `56` |             `15807` |             `282.27` |          `12.56%` |
+| [`etcd`](https://github.com/etcd-io/etcd)                |  `1012` |            `209224` |             `206.74` |           `5.55%` |
+| [`terraform`](https://github.com/hashicorp/terraform)    |  `1235` |            `356627` |             `288.77` |          `10.62%` |
+| [`hugo`](https://github.com/gohugoio/hugo)               |   `753` |            `155568` |             `206.60` |          `10.01%` |
+| [`consul`](https://github.com/hashicorp/consul)          |  `1621` |            `540738` |             `333.58` |           `8.58%` |
+| [`vault`](https://github.com/hashicorp/vault)            |  `1496` |            `474304` |             `317.05` |          `12.55%` |
+| [`nomad`](https://github.com/hashicorp/nomad)            |  `1643` |            `538551` |             `327.79` |           `9.99%` |
 
-`35 535` files were analyzed, they contained `7 169 000` lines of code.
+`60 333` files were analyzed, they contained `18 411 129` lines of code.
 
 ## Analysis
 
@@ -102,48 +106,68 @@ Running the analysis, I've got the following results:
 
 | Parameter |    Value |
 | :-------- | -------: |
-| Min       |  `6.29%` |
-| Max       | `27.94%` |
-| Average   | `14.00%` |
-| P99:      | `20.59%` |
-| P95:      | `19.95%` |
-| P90:      | `18.32%` |
-| P75:      | `17.24%` |
-| P50:      | `13.75%` |
+| Min       |  `5.55%` |
+| Max       | `16.99%` |
+| Average   | `10.00%` |
+| P99:      | `16.96%` |
+| P95:      | `14.02%` |
+| P90:      | `13.66%` |
+| P75:      | `12.55%` |
+| P50:      | `10.01%` |
+
+![](./images/histogram.png)
 
 First of all, I should note that the results are not very precise for a few reasons:
 
 - I've used a very simple metric, which doesn't separate code comments from package comments.
   It's debatable whether it should separate them or not.
+
 - I've selected only a few projects, which might not be representative enough.
   However, I've tried to select projects of different sizes and domains, developed by different vendors.
 
 Keeping that in mind, I can say that the results are quite interesting.
 
-1. First of all, most of the projects have a lot of comments.
-   It's enough to say that half of them have slightly more than 10% of comments.
+### Most commented projects
 
-   Only there of these projects have less than 10% of comments, and they are:
+First of all, most of the projects have a lot of comments.
+It's enough to say that half of them have slightly more than 8% of comments.
 
-   - [`buildkit`](https://github.com/moby/buildkit)
-   - [`grafana`](https://github.com/grafana/grafana)
-   - [`loki`](https://github.com/grafana/loki)
+Only there of these projects have less than 8% of comments, and they are:
 
-   Two of them where developed by the same vendor, which might indicate influence of vendor's coding guidelines.
-   Still, all of them have more than 6% of comments.
+- [`etcd`](https://github.com/etcd-io/etcd)
+- [`compose`](https://github.com/docker/compose)
+- [`grafana`](https://github.com/grafana/grafana)
 
-2. Secondly, only two projects have more than 20% of comments:
+### Least commented projects
 
-   - [`helm`](https://github.com/helm/helm)
-   - [`hugo`](https://github.com/gohugoio/hugo)
+Secondly, only two projects have more than 15% of comments:
 
-   It's worth mentioning that [Golang sources](https://github.com/golang/go) are very close to that value (19.95%).
-   However, it's a very specific project - it's more of a platform than a single application.
-   This is why I think it's wise to exlude it from the top.
-   However I don't feel I should exclude it from the overall research
-   since Golang sources are an obviously good reference point if you are looking for an example of idiomatic Go code.
+- [`kubernetes`](https://github.com/kubernetes/kubernetes)
+- [`loki`](https://github.com/grafana/loki)
 
-3. Finally, the average value is 14%.
+It's worth mentioning that [Golang sources](https://github.com/golang/go) are very close to that value (13.66%).
+However, it's a very specific project - it's more of a platform than a single application.
+This is why I think it's wise to exlude it from the top.
+However I don't feel I should exclude it from the overall research
+since Golang sources are an obviously good reference point if you are looking for an example of idiomatic Go code.
+
+### Correlation between comment rate and codebase size
+
+![](./images/rate-codebase-size-chart.png)
+
+It should be noted that 5 projects with the largest codebases all have more than 10% of comments:
+
+- [`containerd`](https://github.com/containerd/containerd)
+- [`moby`](https://github.com/moby/moby)
+- [`go`](https://github.com/golang/go)
+- `loki`](https://github.com/grafana/loki)
+- [`kubernetes`](https://github.com/kubernetes/kubernetes)
+
+### Correlation between comment rate and file size
+
+![](./images/rate-file-size-chart.png)
+
+There seems to be no visible correlation between comment rate and file size.
 
 ## Conclusion
 
@@ -152,23 +176,26 @@ Before saying anything, I should put an extra emphasis on this statement:
 Most certainly I am not trying to encourage anyone to write bad code that is barely readable
 and them make it readable with lots of comments.
 
-Still, if you are willing to keep your code comments up with publicly accepted levels of quality,
+Still, if you are willing to keep your code comments up
+with what seems to be publicly accepted level of quality,
 I could recommend you to follow these rules:
 
-- Your code should have at least 10% of comments.
+- Your code should have at least `5%` of comments.
   Having less than that is a sign that some compicated parts of your code are not documented well enough.
-- Your code should not have more than 20% of comments.
+
+- Your code should not have more than `20%` of comments.
   Having more that that is a sign that your code is overdocumented
   and it's likely that some of the comments are redundant.
+
 - While first two rules might be a viable guidelines, they are not dogmas.
   You should make a justified desicion on each case individually.
 
-  It might be absolutely necessary to have even 50% of comments for some projects,
-  while some other ones might need less than 1% of comments.
-  However, I believe it would be a great idea to compare your project
-  with some well-knonw open source ones
-  to have a point of reference.
-  Your decisions must be justified, and not only by your own wismod - but on a wisdom gathered by the whole humanity.
+It might be absolutely necessary to have even 50% of comments for some projects,
+while some other ones might need less than 1% of comments.
+However, I believe it would be a great idea to compare your project
+with some well-known open source ones
+to have a point of reference.
+Your decisions must be justified, and not only by your own wismod - but on a wisdom gathered by the whole humanity.
 
 ## Research details and process
 
@@ -220,9 +247,6 @@ Run the following command to start the analysis:
 
 ```bash
 make
-
-# or, if you don't want to pull newer version of sources if they are already present
-NO_PULL=1 make
 ```
 
 This command would fetch the source projects, run the analysis and generate the report.

@@ -11,7 +11,7 @@ function git_fetch() {
 	if [ ! -d "$LOCALDIR/.git" ]; then
 		_git_clone "$URL" "$LOCALDIR"
 	else
-		_git_pull "$LOCALDIR"
+		printf "\e[1;33mUPTODATE\e[0m $URL\n" >&2
 	fi
 
 	echo "$LOCALDIR"
@@ -33,16 +33,4 @@ function _git_clone() {
 
 	printf "\e[1;33mCLONE\e[0m $URL\n" >&2
 	git clone "$URL" "$LOCALDIR" >&2
-}
-
-function _git_pull() {
-	if [ -n $NO_PULL ]; then
-	printf "\e[1;33mUPTODATE\e[0m $URL\n" >&2
-		return
-	fi
-
-	LOCALDIR="$1"
-
-	printf "\e[1;33mPULL\e[0m $URL\n" >&2
-	(cd "$LOCALDIR" && git pull) >&2
 }
