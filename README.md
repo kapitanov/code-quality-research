@@ -19,6 +19,10 @@ Since these projects are well-known and well-established
 and they exist and are begin developed, improved and maintained for a significant time,
 their development processes and practices are at very least good enough to be considered as a reference.
 
+It's worth mentioning that code comments are hard to measure,
+since their value is hardly formalizable.
+In this work I assume that most code comments  are well-written and provide valuable information.
+
 ## Methodic
 
 I've decided to use a simple metric to measure the code quality:
@@ -176,7 +180,10 @@ Before saying anything, I should put an extra emphasis on this statement:
 Most certainly I am not trying to encourage anyone to write bad code that is barely readable
 and them make it readable with lots of comments.
 
-Still, if you are willing to keep your code comments up
+I suggest using `comment rate` metrics as one of metrics to measure code quality,
+along with other ones, such as `cognitive complexity`, `cyclomatic complexity` and others.
+
+If you are willing to keep your code comments up
 with what seems to be publicly accepted level of quality,
 I could recommend you to follow these rules:
 
