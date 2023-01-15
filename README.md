@@ -131,7 +131,7 @@ First of all, I should note that the results are not very precise for a few reas
 
 Keeping that in mind, I can say that the results are quite interesting.
 
-### Most commented projects
+### Least commented projects
 
 First of all, most of the projects have a lot of comments.
 It's enough to say that half of them have slightly more than 8% of comments.
@@ -142,7 +142,7 @@ Only there of these projects have less than 8% of comments, and they are:
 - [`compose`](https://github.com/docker/compose)
 - [`grafana`](https://github.com/grafana/grafana)
 
-### Least commented projects
+### Most commented projects
 
 Secondly, only two projects have more than 15% of comments:
 
