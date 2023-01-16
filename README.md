@@ -164,8 +164,10 @@ It should be noted that 5 projects with the largest codebases all have more than
 - [`containerd`](https://github.com/containerd/containerd)
 - [`moby`](https://github.com/moby/moby)
 - [`go`](https://github.com/golang/go)
-- `loki`](https://github.com/grafana/loki)
+- [`loki`](https://github.com/grafana/loki)
 - [`kubernetes`](https://github.com/kubernetes/kubernetes)
+
+This hints towards the idea that comment are becoming more necessary the codebase grows.
 
 ### Correlation between comment rate and file size
 
